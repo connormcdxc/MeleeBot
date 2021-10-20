@@ -32,6 +32,7 @@ while True:
             else:
                 controller.release_button(melee.enums.Button.BUTTON_X)
     else:
+        #if not in a game go to the character select screen and choose a random puff constume.
         costume = random.randint(0, 4)
         melee.MenuHelper.menu_helper_simple(gamestate,
                                             controller,
