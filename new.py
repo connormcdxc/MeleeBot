@@ -45,7 +45,7 @@ controller_human.connect()
 costume = 0
 falser = True
 otherer = True
-connect_code = ""
+connect_code = "Axa#123"
 
 while True:
     gamestate = console.step()
@@ -70,38 +70,23 @@ while True:
             #print("ConsoleThing")
             #otherer = False
         #If player is in rest range, press down b, otherwise move towards the player
-        if gamestate.distance < 4:
+        #if gamestate.players[2].y == melee.Stage.side_platform_position(YOSHIS_STORY):
+        #    controller.tilt_analog(melee.enums.Button.BUTTON_MAIN, 0.5, 0)
+        #else:
+        #    controller.tilt_analog(melee.enums.Button.BUTTON_MAIN, 0.5, 0.5)
+        if gamestate.distance < 25:
             controller.press_button(melee.enums.Button.BUTTON_B)
-            controller.tilt_analog(melee.enums.Button.BUTTON_MAIN, 0.5, 0)
-        else:
-            #If the player is to the left of the bot, move the bot to the left. Otherwise move the bot to the right
-            onleft = gamestate.players[1].x < gamestate.players[2].x
-            controller.tilt_analog(melee.enums.Button.BUTTON_MAIN, int(onleft), 0.5)
+            #controller.tilt_analog(melee.enums.Button.BUTTON_MAIN, 0.5, 0.5)
+        if gamestate.distance < 2:
             controller.release_button(melee.enums.Button.BUTTON_B)
-            #If the player is above the bot make the bot jump
-            if gamestate.players[1].y < gamestate.players[2].y:
-                controller.press_button(melee.enums.Button.BUTTON_X)
-            else:
-                controller.release_button(melee.enums.Button.BUTTON_X)
+            controller.tilt_analog(melee.enums.Button.BUTTON_MAIN, 0, 0.5)
     else:
-        #print("Menuthing")
-        #if otherer:
-            #print("Menuthing")
-            #otherer = False
         #if not in a game go to the character select screen and choose a random puff constume.
         melee.MenuHelper.menu_helper_simple(gamestate,
                                             controller,
-                                            melee.Character.JIGGLYPUFF,
+                                            melee.Character.KIRBY,
                                             melee.Stage.YOSHIS_STORY,
-                                            connect_code,
+                                            connect_code="Axa#132",
                                             costume=costume,
                                             autostart=False,
                                             swag=False)
-        #melee.MenuHelper.menu_helper_simple(gamestate,
-        #                                    controller,
-        #                                    melee.Character.FOX,
-        #                                    melee.Stage.YOSHIS_STORY,
-        #                                    "",
-        #                                    costume=costume,
-        #                                    autostart=True,
-        #                                    swag=False)
